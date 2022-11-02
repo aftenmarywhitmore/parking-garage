@@ -7,7 +7,7 @@ class parkingGarage():
         
     
     def takeTicket(self):
-        userTalk = str(input('What is your license plate number? '))
+        user = str(input('What is your license plate number? '))
         if self.tickets == []:
             print('Sorry, the garage is at capacity.')
         else:
@@ -18,36 +18,36 @@ class parkingGarage():
             
          
     def payForParking(self):
-        userTalk = int(input('What is your ticket number? '))
+        user = int(input('What is your ticket number? '))
         
-        if userTalk < 1 or userTalk > 5:              
+        if user < 1 or user > 5:              
             print('This is not a ticket.')
         
-        elif userTalk not in self.currentTicket:
+        elif user not in self.currentTicket:
             print('Please enter a valid ticket number.')
         
         else:
-            if self.currentTicket[userTalk] == 'not paid':
+            if self.currentTicket[user] == 'not paid':
                 payment = input('Type "pay" to pay. ')
-                self.currentTicket[userTalk] = 'paid'
+                self.currentTicket[user] = 'paid'
                 print(self.currentTicket)        
             
                        
     def leaveGarage(self):
-        userTalk = int(input('What is your ticket number? '))
+        user = int(input('What is your ticket number? '))
         
-        if userTalk not in self.currentTicket:
+        if user not in self.currentTicket:
             print('Please enter a valid ticket number.')
         
-        elif self.currentTicket[userTalk] == 'Paid. You have 15 minutes to leave!':
+        elif self.currentTicket[user] == 'Paid. You have 15 minutes to leave!':
             print('Come again soon!')
-            self.tickets.insert(0, userTalk)
-            self.parkingSpaces.insert(0, userTalk)
-            del self.currentTicket[userTalk]                
+            self.tickets.insert(0, user)
+            self.parkingSpaces.insert(0, user)
+            del self.currentTicket[user]                
             self.tickets.sort()
             self.parkingSpaces.sort()
         
-        elif self.currentTicket[userTalk] == 'not paid':
+        elif self.currentTicket[user] == 'not paid':
             print('Please pay before leaving.')
       
         else:
@@ -56,18 +56,18 @@ class parkingGarage():
 def park():
         parking = parkingGarage([1,2,3,4,5], [1,2,3,4,5], {}, {})
         while True:
-            userTalk = input('Welcome. Would you like to park, pay, or leave? ')
+            user = input('Welcome. Would you like to park, pay, or leave? ')
             
-            if userTalk.lower() == 'park':
+            if user.lower() == 'park':
                 parking.takeTicket()
                         
-            elif userTalk.lower() == 'pay':
+            elif user.lower() == 'pay':
                 parking.payForParking()
                 
-            elif userTalk.lower() == 'leave':
+            elif user.lower() == 'leave':
                 parking.leaveGarage()
             
-            elif userTalk.lower() == 'quit':
+            elif user.lower() == 'quit':
                 break
             
             else:
